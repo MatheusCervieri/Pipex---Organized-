@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:25:34 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/25 22:59:27 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/07/26 00:07:52 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 42
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -51,5 +53,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+char	*ft_strjoin_free(char const *s1, char const *s2);
+char	*get_next_line(int fd);
+int		is_there_nl(char *str);
 
 #endif 

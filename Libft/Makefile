@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/16 20:29:14 by mvieira-          #+#    #+#              #
-#    Updated: 2022/07/25 22:51:35 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/07/26 00:06:45 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC			=	./ft_bzero.c ft_isalnum.c ft_isalpha.c \
 				ft_itoa.c ft_strmapi.c ft_striteri.c \
 				ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 				ft_putnbr_fd.c \
+				get_next_line.c \
+				get_next_line_utils.c 
 
 H_SRC		=	../includes/libft.h
 
