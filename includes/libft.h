@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 16:25:34 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/07/26 00:07:52 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/07/26 00:17:26 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h> 
 
 # define BUFFER_SIZE 42
 
@@ -56,5 +57,16 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin_free(char const *s1, char const *s2);
 char	*get_next_line(int fd);
 int		is_there_nl(char *str);
+int		ft_printf(const char *fmt, ...);
+int		write_input(const char *str, va_list args);
+int		write_char(char c);
+int		write_string(char *str);
+int		write_integer(signed long number);
+int		write_unsigned_integer(unsigned int number);
+int		write_hex(unsigned int number);
+int		write_hex_upper(unsigned int number);
+int		write_pointer(void *ptr);
+int		write_plus_one(char c);
+char	*itoa_base(unsigned long long n, char *base);
 
 #endif 
