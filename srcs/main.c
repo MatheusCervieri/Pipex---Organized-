@@ -1,19 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 20:23:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 20:24:49 by mvieira-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "pipex.h"
 
-#include "project.h"
-
-int	main(void)
+int	main(int argc, char *argv[], char *envp[])
 {
-	ft_printf("Hello World \n");
+	t_data	data;
+	init_struct(&data);
+	args_check(argc, argv, envp, &data);
+	pipe_operator(&data);
+	memory_handle(&data);
 	return (0);
 }

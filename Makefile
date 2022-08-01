@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/07/25 23:22:09 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/01 20:41:38 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,14 @@ CFLAGS = -Wall -Wextra -Werror -I $(HEADERS_PATH)
 RM = rm -f
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
-NAME = project
+NAME = pipex
 SRC_FILES = main.c \
+			pipe.c \
+			exit_program.c \
+			args_check.c \
+			ft_split.c \
+			utils.c \
+			init_struct.c 
 
 LIBFT_A = $(LIBS_PATH)libft.a 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
