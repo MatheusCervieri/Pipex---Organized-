@@ -6,13 +6,13 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 22:11:54 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 22:11:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:14:35 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *join_bar(char *s1, char *s2)
+char	*join_bar(char *s1, char *s2)
 {
 	size_t	newstrlen;
 	char	*newstr;
@@ -38,6 +38,5 @@ char *join_bar(char *s1, char *s2)
 		s2++;
 	}
 	*newstr = '\0';
-
 	return (newstrfirstposition);
 }
