@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   args_check.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/01 21:57:04 by mvieira-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-void find_program1(t_data *data, char *program_name)
+void	find_program1(t_data *data, char *program_name)
 {
-	int i;
-	char *path;
+	int		i;
+	char	*path;
 
 	i = 0;
 	while (data->env_paths[i])
@@ -12,7 +24,7 @@ void find_program1(t_data *data, char *program_name)
 		if (access(path, F_OK) == 0)
 		{
 			data->program1_path = path;
-				break ;
+			break ;
 		}
 		else
 		{
@@ -22,10 +34,11 @@ void find_program1(t_data *data, char *program_name)
 		i++;
 	}
 }
-void find_program2(t_data *data, char *program_name)
+
+void	find_program2(t_data *data, char *program_name)
 {
-	int i;
-	char *path;
+	int		i;
+	char	*path;
 
 	i = 0;
 	while (data->env_paths[i])
@@ -34,9 +47,9 @@ void find_program2(t_data *data, char *program_name)
 		if (access(path, F_OK) == 0)
 		{
 			data->program2_path = path;
-				break ;
+			break ;
 		}
-		else 
+		else
 		{
 			data->program2_path = NULL;
 		}
@@ -45,15 +58,16 @@ void find_program2(t_data *data, char *program_name)
 	}
 }
 
-void find_path_env(t_data *data, char *envp[])
+void	find_path_env(t_data *data, char *envp[])
 {
 	char	*paths;
+	int		i;
 
 	paths = NULL;
-	int i = 0;
-	while(envp[i])
+	i = 0;
+	while (envp[i])
 	{
-		if(ft_strncmp("PATH", envp[i], 4) == 0)
+		if (ft_strncmp("PATH", envp[i], 4) == 0)
 			paths = ft_strdup(envp[i] + 5);
 	i++;
 	}
@@ -63,33 +77,30 @@ void find_path_env(t_data *data, char *envp[])
 	free(paths);
 	find_program1(data, data->input_program_parameters[0]);
 	find_program2(data, data->output_program_parameters[0]);
-	if(data->program1_path == NULL)
+	if (data->program1_path == NULL)
 		exit_program("Couldnt find the first program", data);
-	if(data->program2_path == NULL)
+	if (data->program2_path == NULL)
 		exit_program("Couldnt find the second program", data);
 }
 
-
-
-void args_check(int argc, char *argv[], char *envp[], t_data *data)
+void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 {
 	if (argc != 5)
 	{
 		perror("invalid number of arguments");
 		exit(2);
 	}
-	if (access(argv[1], F_OK) != 0) //F_OK check the existence. 
+	if (access(argv[1], F_OK) != 0)
 	{
 		exit_program("Cannot access the file", data);
 	}
-	if (access(argv[4], F_OK) != 0) //F_OK check the existence. 
+	if (access(argv[4], F_OK) != 0)
 	{
 		exit_program("Cannot access the file", data);
 	}
 	data->input_path = argv[1];
 	data->output_path = argv[4];
-	
-	data->input_program_parameters = ft_split(argv[2] , ' ');
-	data->output_program_parameters = ft_split(argv[3] , ' ');
+	data->input_program_parameters = ft_split(argv[2], ' ');
+	data->output_program_parameters = ft_split(argv[3], ' ');
 	find_path_env(data, envp);
 }
