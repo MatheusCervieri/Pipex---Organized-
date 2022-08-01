@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/01 20:41:38 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/01 22:08:32 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC_FILES = main.c \
 			pipe.c \
 			exit_program.c \
 			args_check.c \
-			ft_split.c \
 			utils.c \
 			init_struct.c 
 

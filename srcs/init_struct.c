@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 22:09:27 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/01 22:09:43 by mvieira-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-void init_struct(t_data *data)
+void	init_struct(t_data *data)
 {
-	//double pointer. 
 	data->input_program_parameters = NULL;
 	data->output_program_parameters = NULL;
 	data->env_paths = NULL;
