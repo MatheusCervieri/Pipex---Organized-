@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 11:52:54 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:18:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	open_file(char *file_name, t_data *data)
 {
 	int fd;
 
-	fd = open(file_name, O_RDWR);
+	fd = open(file_name, O_RDWR|O_APPEND, S_IRUSR | S_IWUSR);
 	if (fd < 0)
 		exit_program("Error when open the file!", data);
 	return (fd);
@@ -33,7 +33,7 @@ int open_or_create(char *file_name, t_data *data)
 {
 	int fd;
 
-	fd = open(file_name, O_RDWR | O_CREAT);
+	fd = open(file_name, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
 	if (fd < 0)
 		exit_program("Error when open the file!", data);
 	return (fd);
