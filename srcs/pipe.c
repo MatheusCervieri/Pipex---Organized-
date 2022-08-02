@@ -6,17 +6,16 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 11:34:43 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:52:54 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	open_program(char *cmd, char *argVec[], t_data *data)
+void	open_program(char *cmd, char *argVec[], t_data *data, char *envp[])
 {
-	char	*envVec[] = {NULL};
 
-	if(execve(cmd, argVec, envVec) == -1) 
+	if(execve(cmd, argVec, envp) == -1) 
 		exit_program("Couldn't open the program", data);
 }
 
@@ -40,26 +39,26 @@ int open_or_create(char *file_name, t_data *data)
 	return (fd);
 }
 
-void	pid_one_func(t_data *data, int in_file_fd, int fd[2])
+void	pid_one_func(t_data *data, int in_file_fd, int fd[2], char *envp[])
 {
 	dup2(in_file_fd, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	open_program(data->program1_path, data->input_program_parameters, data);
+	open_program(data->program1_path, data->input_program_parameters, data, envp);
 }
 
-void pid_two_func(t_data *data, int out_file_fd, int fd[2])
+void pid_two_func(t_data *data, int out_file_fd, int fd[2], char *envp[])
 {
 	dup2(out_file_fd, STDOUT_FILENO);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	open_program(data->program2_path,
-			data->output_program_parameters, data);
+			data->output_program_parameters, data, envp);
 }
 
-void	pipe_operator(t_data *data)
+void	pipe_operator(t_data *data, char *envp[])
 {
 	int	fd[2];
 	int	in_file_fd;
@@ -75,10 +74,10 @@ void	pipe_operator(t_data *data)
 	if (pid1 < 0)
 		exit_program("Fork function error", data);
 	if (pid1 == 0)
-		pid_one_func(data, in_file_fd, fd);		
+		pid_one_func(data, in_file_fd, fd, envp);		
 	pid2 = fork();
 	if (pid2 == 0)
-		pid_two_func(data, out_file_fd, fd);
+		pid_two_func(data, out_file_fd, fd, envp);
 	close(in_file_fd);
 	// close out_file_fd
 	close(fd[0]);

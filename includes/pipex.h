@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 22:15:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 22:16:55 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:50:40 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_data
 	char	*program2_path;
 }	t_data;
 
-void	pipe_operator(t_data *data);
+void	pipe_operator(t_data *data, char *envp[]);
 void	exit_program(char *error_m, t_data *data);
 void	args_check(int argc, char *argv[], char *envp[], t_data *data);
 char	**ft_split(char const *s, char c);
