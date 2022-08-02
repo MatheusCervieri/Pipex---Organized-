@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:58:52 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/01 22:06:46 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:32:11 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	memory_handle(t_data *data)
 	int	i;
 
 	free_data_input_output(data);
-	i = 0;
-	if (data->env_paths[i] != NULL)
+	
+	
+	if (data->env_paths != NULL)
 	{
+		i = 0;
 		while (data->env_paths[i])
 		{
 			free(data->env_paths[i]);
