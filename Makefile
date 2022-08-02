@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/01 22:08:32 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/02 11:07:05 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(LIBFT_A):
 	@cd $(LIBS_PATH) && $(MAKE_NOPRINT)
 	
 $(NAME): $(LIBFT_A) $(OBJECTS) 
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT_A)  -lmlx -lXext -lX11 
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT_A)
 
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@$(MKDIR) $(OBJS_PATH)

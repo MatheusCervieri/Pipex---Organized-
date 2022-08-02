@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 15:29:23 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:26:51 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,6 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	{
 		exit_program("Cannot access the file", data);
 	}
-	if (access(argv[4], F_OK) != 0)
-	{
-		exit_program("Cannot access the file", data);
-	}
-	ft_printf("Chegou aqui \n");
 	data->input_path = argv[1];
 	data->output_path = argv[4];
 	data->input_program_parameters = ft_split(argv[2], ' ');

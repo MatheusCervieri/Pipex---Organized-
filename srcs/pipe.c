@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 00:54:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:34:43 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,18 @@ int	open_file(char *file_name, t_data *data)
 		exit_program("Error when open the file!", data);
 	return (fd);
 }
-void pid_one_func(t_data *data, int in_file_fd, int fd[2])
+
+int open_or_create(char *file_name, t_data *data)
+{
+	int fd;
+
+	fd = open(file_name, O_RDWR | O_CREAT);
+	if (fd < 0)
+		exit_program("Error when open the file!", data);
+	return (fd);
+}
+
+void	pid_one_func(t_data *data, int in_file_fd, int fd[2])
 {
 	dup2(in_file_fd, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
@@ -57,7 +68,7 @@ void	pipe_operator(t_data *data)
 	int	pid2;
 
 	in_file_fd = open_file(data->input_path, data);
-	out_file_fd = open_file(data->output_path, data);
+	out_file_fd = open_or_create(data->output_path, data);
 	if (pipe(fd) == -1)
 		exit_program("Pipe function error", data);
 	pid1 = fork();
