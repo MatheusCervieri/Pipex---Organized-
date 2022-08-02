@@ -22,3 +22,30 @@ echo "MY:"
 cat test3my
 echo "Original:"
 cat test3original
+echo "Test 4 -  < text1.txt tr a b | tr b '  ' > test4myoriginal-----------------"
+./pipex text1.txt "tr a b" "tr b '  '" test4my
+echo $?
+< text1.txt tr a b | tr b '  ' > test4original
+echo $?
+echo "MY:"
+cat test4my
+echo "Original:"
+cat test4original
+echo "Test 5 - < text1.txt comandonaoexiste | wc -w > outfile -----------------------------"
+./pipex text1.txt "comandonaoexiste" "wc -w" test5my
+echo $?
+< text1.txt comandonaoexiste | wc -w > test5original
+echo $?
+echo "MY:"
+cat test5my
+echo "Original:"
+cat test5original
+echo "Test 6 - < text1.txt grep a1 | comandonaoexiste > outfile -----------------------------"
+./pipex text1.txt "grep a1" "comandonaoexiste" test6my
+echo $?
+< text1.txt grep a1 | comandonaoexiste > test6original
+echo $?
+echo "MY:"
+cat test6my
+echo "Original:"
+cat test6original

@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:58:52 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 12:07:04 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:24:03 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	exit_program(char *error_m, t_data *data)
 {
 	memory_handle(data);
 	perror(error_m);
-	exit(1);
+	exit(0);
 }
