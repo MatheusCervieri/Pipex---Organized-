@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 11:26:51 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:30:32 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	}
 	data->input_path = argv[1];
 	data->output_path = argv[4];
-	data->input_program_parameters = ft_split(argv[2], ' ');
-	data->output_program_parameters = ft_split(argv[3], ' ');
+	data->input_program_parameters = get_parameters(argv[2]);
+	data->output_program_parameters = get_parameters(argv[3]);
 	find_path_env(data, envp);
 }

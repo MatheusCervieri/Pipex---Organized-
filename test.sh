@@ -29,8 +29,10 @@ echo $?
 echo $?
 echo "MY:"
 cat test4my
+echo \n
 echo "Original:"
 cat test4original
+echo \n
 echo "Test 5 - < text1.txt comandonaoexiste | wc -w > outfile -----------------------------"
 ./pipex text1.txt "comandonaoexiste" "wc -w" test5my
 echo $?
