@@ -93,24 +93,12 @@ void revert_spaces(char ***tokens)
 	}
 }
 
-
-
-void	get_parameters(char *parameter)
+char	**get_parameters(char *parameter)
 {
-	char *teste = ft_strdup(parameter);
-	char *teste2 = ft_strdup("A ' ' BDASADSA");
-	char **tokens;
-	change_spaces(&teste);
-	change_spaces(&teste2);
-
-	tokens = ft_split(teste2, ' '); 
+	char	**tokens;
+	change_spaces(&parameter);
+	tokens = ft_split(parameter, ' '); 
 	revert_spaces(&tokens);
 	remove_quotes(&tokens);
-	ft_printf("\nArgumetns: \n");
-	int i = 0;
-	while (tokens[i] != NULL)
-	{
-		ft_printf("%s\n", tokens[i]);
-		i++;
-	}
+	return (tokens);
 }
