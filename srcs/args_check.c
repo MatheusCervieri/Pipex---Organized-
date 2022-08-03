@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/03 17:30:32 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/03 19:17:18 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,17 @@ void	find_path_env(t_data *data, char *envp[])
 		exit_program("Couldnt find the second program", data);
 }
 
+int open_or_create(char *file_name, t_data *data)
+{
+	int fd;
+
+	fd = open(file_name, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
+	if (fd < 0)
+		exit_program("Error when open the file!", data);
+	return (fd);
+}
+
+
 void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 {
 	if (argc != 5)
@@ -90,12 +101,15 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 		perror("invalid number of arguments");
 		exit(2);
 	}
+	data->output_path = argv[4];
+	data->out_file_fd = open(data->output_path, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
+	if (data->out_file_fd < 0)
+		exit_program("Error when open the file!", data);
 	if (access(argv[1], F_OK) != 0)
 	{
 		exit_program("Cannot access the file", data);
 	}
 	data->input_path = argv[1];
-	data->output_path = argv[4];
 	data->input_program_parameters = get_parameters(argv[2]);
 	data->output_program_parameters = get_parameters(argv[3]);
 	find_path_env(data, envp);

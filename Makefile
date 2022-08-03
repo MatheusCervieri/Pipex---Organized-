@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/03 11:59:59 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/03 19:20:21 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./Libft/
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I $(HEADERS_PATH)
+CFLAGS = -Wall -Wextra -Werror -g -I $(HEADERS_PATH)
 RM = rm -f
 MKDIR = mkdir -p
 MAKE_NOPRINT = $(MAKE) --no-print-directory
