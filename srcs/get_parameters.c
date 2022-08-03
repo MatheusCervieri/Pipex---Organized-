@@ -2,6 +2,45 @@
 
 
 
+static void	remove_quotes(char ***tokens)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while ((*tokens)[i] != NULL)
+	{
+		if ((*tokens)[i][ft_strlen((*tokens)[i]) - 1] == '\'')
+			(*tokens)[i][ft_strlen((*tokens)[i]) - 1] = '\0';
+		if ((*tokens)[i][0] == '\'')
+		{
+			j = 0;
+			while ((*tokens)[i][++j])
+			(*tokens)[i][j - 1] = (*tokens)[i][j];
+			(*tokens)[i][j - 1] = '\0';
+		}
+		i++;
+	}
+	i = 0;
+	while ((*tokens)[i] != NULL)
+	{
+		if ((*tokens)[i][ft_strlen((*tokens)[i]) - 1] == '\"')
+			(*tokens)[i][ft_strlen((*tokens)[i]) - 1] = '\0';
+		if ((*tokens)[i][0] == '\"')
+		{
+			j = 0;
+			while ((*tokens)[i][++j])
+			(*tokens)[i][j - 1] = (*tokens)[i][j];
+			(*tokens)[i][j - 1] = '\0';
+		}
+		i++;
+	}
+}
+
+
+
+
+
 void	change_spaces(char **parameter)
 {
 	char	*position;
@@ -66,6 +105,7 @@ void	get_parameters(char *parameter)
 
 	tokens = ft_split(teste2, ' '); 
 	revert_spaces(&tokens);
+	remove_quotes(&tokens);
 	ft_printf("\nArgumetns: \n");
 	int i = 0;
 	while (tokens[i] != NULL)
