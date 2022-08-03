@@ -6,7 +6,7 @@
 #    By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:18:37 by roaraujo          #+#    #+#              #
-#    Updated: 2022/08/02 11:07:05 by mvieira-         ###   ########.fr        #
+#    Updated: 2022/08/03 11:59:59 by mvieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC_FILES = main.c \
 			exit_program.c \
 			args_check.c \
 			utils.c \
-			init_struct.c 
+			init_struct.c \
+			get_parameters.c
 
 LIBFT_A = $(LIBS_PATH)libft.a 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))

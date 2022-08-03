@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 22:15:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/02 11:50:40 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/03 12:12:24 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ char	**ft_split(char const *s, char c);
 char	*join_bar(char *s1, char *s2);
 void	init_struct(t_data *data);
 void	memory_handle(t_data *data);
+void	get_parameters(char *parameter);
 
 #endif
