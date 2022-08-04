@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/04 11:05:11 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:18:04 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,23 @@ int	open_file(char *file_name)
 
 void	pid_one_func(t_data *data, int in_file_fd, int fd[2], char *envp[])
 {
+	if (in_file_fd != -1)
+	{
 	dup2(in_file_fd, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 	open_program(data->program1_path, data->input_program_parameters, envp);
+	}
+	else
+	{
+		int devnull = open("/dev/null", O_WRONLY);
+		dup2(devnull, STDOUT_FILENO);
+		dup2(fd[1], devnull);
+		open_program(data->program1_path, data->input_program_parameters, envp);
+		close(fd[0]);
+		close(fd[1]);
+	}
 }
 
 void pid_two_func(t_data *data, int out_file_fd, int fd[2], char *envp[])
