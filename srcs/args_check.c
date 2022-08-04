@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/04 11:14:02 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:27:41 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	find_program1(t_data *data, char *program_name)
 {
 	int		i;
 	char	*path;
+	char	*erromessage;
 
 	i = 0;
 	while (data->env_paths[i])
@@ -33,12 +34,19 @@ void	find_program1(t_data *data, char *program_name)
 		free(path);
 		i++;
 	}
+	if (data->program1_path == NULL)
+	{
+		erromessage = ft_strjoin(program_name, ": command not found");
+		ft_putstr_fd(erromessage, 2);
+		free(erromessage);
+	}
 }
 
 void	find_program2(t_data *data, char *program_name)
 {
 	int		i;
 	char	*path;
+	char	*erromessage;
 
 	i = 0;
 	while (data->env_paths[i])
@@ -55,6 +63,11 @@ void	find_program2(t_data *data, char *program_name)
 		}
 		free(path);
 		i++;
+	}
+	if (data->program2_path == NULL)
+	{
+		erromessage = ft_strjoin(program_name, ": command not found");
+		ft_putstr_fd(erromessage, 2);
 	}
 }
 
@@ -105,11 +118,12 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	data->out_file_fd = open(data->output_path, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
 	if (data->out_file_fd < 0)
 		perror(data->output_path);
+	data->input_path = argv[1];
 	if (access(argv[1], F_OK) != 0)
 	{
+		data->input_path = NULL;
 		perror(argv[1]); //No such file or directory. 
 	}
-	data->input_path = argv[1];
 	data->input_program_parameters = get_parameters(argv[2]);
 	data->output_program_parameters = get_parameters(argv[3]);
 	find_path_env(data, envp);
