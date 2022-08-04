@@ -1,8 +1,12 @@
-echo "Test 1 - Incorrect first file! -----------------------------"
+echo "Test 1 - < infile ls -l | wc -l > test1original | Incorrect first file! -----------------------------"
 ./pipex infile "ls -l" "wc -l" test1my
 echo $?
 < infile ls -l | wc -l > test1original
 echo $?
+echo "MY:"
+cat test1my
+echo "Original:"
+cat test1original
 echo "Test 2 - < text1.txt ls -l | wc -l > test1original -----------------------------"
 ./pipex text1.txt "ls -l" "wc -l" test2my
 echo $?

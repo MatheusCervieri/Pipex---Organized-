@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/03 19:17:18 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/04 11:14:02 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	find_path_env(t_data *data, char *envp[])
 	find_program1(data, data->input_program_parameters[0]);
 	find_program2(data, data->output_program_parameters[0]);
 	if (data->program1_path == NULL)
-		exit_program("Couldnt find the first program", data);
+		perror(data->input_program_parameters[0]);
 	if (data->program2_path == NULL)
-		exit_program("Couldnt find the second program", data);
+		perror(data->output_program_parameters[0]);
 }
 
 int open_or_create(char *file_name, t_data *data)
@@ -104,10 +104,10 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	data->output_path = argv[4];
 	data->out_file_fd = open(data->output_path, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
 	if (data->out_file_fd < 0)
-		exit_program("Error when open the file!", data);
+		perror(data->output_path);
 	if (access(argv[1], F_OK) != 0)
 	{
-		exit_program("Cannot access the file", data);
+		perror(argv[1]); //No such file or directory. 
 	}
 	data->input_path = argv[1];
 	data->input_program_parameters = get_parameters(argv[2]);
