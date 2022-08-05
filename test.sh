@@ -55,3 +55,12 @@ echo "MY:"
 cat test6my
 echo "Original:"
 cat test6original
+echo "Test 7 - < text1.txt comandonaoexiste | comandonaoexiste > outfile -----------------------------"
+./pipex text1.txt "comandonaoexiste" "comandonaoexiste" test7my
+echo $?
+< text1.txt comandonaoexiste | comandonaoexiste > test6original
+echo $?
+echo "MY:"
+cat test7my
+echo "Original:"
+cat test7original

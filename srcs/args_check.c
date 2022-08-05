@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/04 16:27:41 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:10:20 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	find_program1(t_data *data, char *program_name)
 	}
 	if (data->program1_path == NULL)
 	{
-		erromessage = ft_strjoin(program_name, ": command not found");
+		erromessage = ft_strjoin(program_name, ": command not found\n");
 		ft_putstr_fd(erromessage, 2);
 		free(erromessage);
 	}
@@ -66,7 +66,7 @@ void	find_program2(t_data *data, char *program_name)
 	}
 	if (data->program2_path == NULL)
 	{
-		erromessage = ft_strjoin(program_name, ": command not found");
+		erromessage = ft_strjoin(program_name, ": command not found\n");
 		ft_putstr_fd(erromessage, 2);
 	}
 }
@@ -90,10 +90,6 @@ void	find_path_env(t_data *data, char *envp[])
 	free(paths);
 	find_program1(data, data->input_program_parameters[0]);
 	find_program2(data, data->output_program_parameters[0]);
-	if (data->program1_path == NULL)
-		perror(data->input_program_parameters[0]);
-	if (data->program2_path == NULL)
-		perror(data->output_program_parameters[0]);
 }
 
 int open_or_create(char *file_name, t_data *data)

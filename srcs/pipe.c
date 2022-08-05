@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/04 16:47:27 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/05 11:34:32 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	open_program(char *cmd, char *argVec[], char *envp[])
 	{
 	int devnull = open("/dev/null", O_WRONLY);
 	dup2(devnull, STDOUT_FILENO);
-	perror(cmd);
 	}
 }
 
@@ -28,8 +27,6 @@ int	open_file(char *file_name)
 	int fd;
 
 	fd = open(file_name, O_RDWR|O_APPEND, S_IRUSR | S_IWUSR);
-	if (fd < 0)
-		perror(file_name);
 	return (fd);
 }
 
@@ -77,7 +74,6 @@ void	pipe_operator(t_data *data, char *envp[])
 	if (data->program1_path == NULL || data->input_path == NULL)
 	{
 		int devnull = open("/dev/null", O_WRONLY);
-		ft_printf("%i", devnull);
 		dup2(devnull, fd[1]);
 	}
 	else
@@ -94,8 +90,12 @@ void	pipe_operator(t_data *data, char *envp[])
 		pid_two_func(data, data->out_file_fd, fd, envp);
 	close(in_file_fd);
 	// close out_file_fd
+	int status;
+	int status2;
+	
 	close(fd[0]);
 	close(fd[1]);
-	//waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	waitpid(pid1, &status, WNOHANG);
+	waitpid(pid2, &status2, WNOHANG);
+
 }

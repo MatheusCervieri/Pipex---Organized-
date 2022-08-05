@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:58:52 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/03 19:21:32 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/05 11:33:34 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ void	exit_program(char *error_m, t_data *data)
 		close(data->out_file_fd);
 	memory_handle(data);
 	perror(error_m);
+	if (data->program2_path == NULL)
+		exit(127);
 	exit(0);
 }
