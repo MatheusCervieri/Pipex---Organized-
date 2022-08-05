@@ -73,6 +73,17 @@ echo "MY:"
 cat test8my
 echo "Original:"
 cat test8original
+echo "Test 9 - ./pipex file1 cat grep x output/outfile5 -----------------------------"
+./pipex file1 "cat" "grep x" test9my
+echo $?
+< file1 cat | grep x > test9original
+echo $?
+echo "MY:"
+cat test9my
+echo "Original:"
+cat test9original
+
+
 
 
 
