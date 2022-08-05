@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/05 11:34:32 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:29:56 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	open_program(char *cmd, char *argVec[], char *envp[])
 int	open_file(char *file_name)
 {
 	int fd;
-
-	fd = open(file_name, O_RDWR|O_APPEND, S_IRUSR | S_IWUSR);
+	if (file_name != NULL)
+	{
+		fd = open(file_name, O_RDWR|O_APPEND, S_IRUSR | S_IWUSR);
 	return (fd);
+	}
+	return (-1);
 }
 
 
@@ -68,6 +71,8 @@ void	pipe_operator(t_data *data, char *envp[])
 	int in_file_fd;
 	int	pid1;
 	int	pid2;
+	
+	pid1 = -1;
 	in_file_fd = open_file(data->input_path);
 	if (pipe(fd) == -1)
 		exit_program("Pipe function error", data);
@@ -88,7 +93,8 @@ void	pipe_operator(t_data *data, char *envp[])
 	pid2 = fork();
 	if (pid2 == 0)
 		pid_two_func(data, data->out_file_fd, fd, envp);
-	close(in_file_fd);
+	if (in_file_fd != -1)
+		close(in_file_fd);
 	// close out_file_fd
 	int status;
 	int status2;
