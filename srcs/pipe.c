@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/05 12:43:12 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:29:56 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	open_program(char *cmd, char *argVec[], char *envp[])
 {
+	
 	if(execve(cmd, argVec, envp) == -1) 
 	{
 	int devnull = open("/dev/null", O_WRONLY);
@@ -50,7 +51,7 @@ void	pid_one_func(t_data *data, int in_file_fd, int fd[2], char *envp[])
 		dup2(fd[1], devnull);
 		close(fd[0]);
 		close(devnull);
-		open_program(data->input_program_parameters[0], data->input_program_parameters, envp);
+		open_program(data->program1_path, data->input_program_parameters, envp);
 	}
 }
 
@@ -61,7 +62,7 @@ void pid_two_func(t_data *data, int out_file_fd, int fd[2], char *envp[])
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	open_program(data->output_program_parameters[0], data->output_program_parameters, envp);
+	open_program(data->program2_path, data->output_program_parameters, envp);
 }
 
 void	pipe_operator(t_data *data, char *envp[])
