@@ -1,26 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_parameters.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 13:06:37 by mvieira-          #+#    #+#             */
+/*   Updated: 2022/08/08 13:15:46 by mvieira-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-
-
-static void	remove_quotes(char ***tokens)
+void	remove_double_quotes(char ***tokens)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while ((*tokens)[i] != NULL)
-	{
-		if ((*tokens)[i][ft_strlen((*tokens)[i]) - 1] == '\'')
-			(*tokens)[i][ft_strlen((*tokens)[i]) - 1] = '\0';
-		if ((*tokens)[i][0] == '\'')
-		{
-			j = 0;
-			while ((*tokens)[i][++j])
-			(*tokens)[i][j - 1] = (*tokens)[i][j];
-			(*tokens)[i][j - 1] = '\0';
-		}
-		i++;
-	}
 	i = 0;
 	while ((*tokens)[i] != NULL)
 	{
@@ -37,11 +33,7 @@ static void	remove_quotes(char ***tokens)
 	}
 }
 
-
-
-
-
-void	change_spaces(char **parameter)
+void	change_spaces_double_quote(char **parameter)
 {
 	char	*position;
 
@@ -58,6 +50,18 @@ void	change_spaces(char **parameter)
 				*parameter = *parameter + 1;
 			}
 		}
+		*parameter = *parameter + 1;
+	}
+	*parameter = position;
+}
+
+void	change_spaces_single_quote(char **parameter)
+{
+	char	*position;
+
+	position = *parameter;
+	while (*(*parameter) != '\0')
+	{
 		if (*(*parameter) == 39)
 		{
 			*parameter = *parameter + 1;
@@ -74,7 +78,7 @@ void	change_spaces(char **parameter)
 }
 
 
-void revert_spaces(char ***tokens)
+void	revert_spaces(char ***tokens)
 {
 	int	i;
 	int	j;
@@ -96,9 +100,12 @@ void revert_spaces(char ***tokens)
 char	**get_parameters(char *parameter)
 {
 	char	**tokens;
-	change_spaces(&parameter);
-	tokens = ft_split(parameter, ' '); 
+
+	change_spaces_double_quote(&parameter);
+	change_spaces_single_quote(&parameter);
+	tokens = ft_split(parameter, ' ');
 	revert_spaces(&tokens);
-	remove_quotes(&tokens);
+	remove_double_quotes(&tokens);
+	remove_single_quotes(&tokens);
 	return (tokens);
 }

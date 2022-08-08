@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 22:15:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 11:58:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:16:27 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	init_struct(t_data *data);
 void	memory_handle(t_data *data);
 char	**get_parameters(char *parameter);
 void	exit_handle(t_data *data);
+void	remove_single_quotes(char ***tokens);
 
 #endif
