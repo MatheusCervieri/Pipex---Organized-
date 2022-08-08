@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:52:03 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 11:59:00 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:56:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	data;
+
 	init_struct(&data);
 	args_check(argc, argv, envp, &data);
 	pipe_operator(&data, envp);

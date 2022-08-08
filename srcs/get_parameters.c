@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 13:06:37 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 13:15:46 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:56:56 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	change_spaces_single_quote(char **parameter)
 	}
 	*parameter = position;
 }
-
 
 void	revert_spaces(char ***tokens)
 {
