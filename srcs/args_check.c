@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 13:04:21 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:29:44 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,11 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	data->out_file_fd = open(data->output_path, O_CREAT | O_RDWR,
 			S_IRUSR | S_IWUSR);
 	if (data->out_file_fd < 0)
+	{
 		perror(data->output_path);
+	}
 	data->input_path = argv[1];
-	if (access(argv[1], F_OK) != 0)
+	if (access(argv[1], R_OK | W_OK) != 0)
 	{
 		data->input_path = NULL;
 		perror(argv[1]);
