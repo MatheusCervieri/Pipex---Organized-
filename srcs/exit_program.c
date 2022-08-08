@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:58:52 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 13:05:50 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:37:33 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	exit_handle(t_data *data)
 	if (data->out_file_fd != -1)
 		close(data->out_file_fd);
 	memory_handle(data);
+	
+	ft_printf("Exit code 1: %i \n", data->exit_code1);
+		ft_printf("Exit code 1: %i \n", data->exit_code2);
+		
 	if (data->program2_path == NULL)
 		exit(127);
 	if (data->exit_code1 == 0 && data->exit_code2 >= 85)
