@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/05 12:29:56 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:05:49 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void pid_two_func(t_data *data, int out_file_fd, int fd[2], char *envp[])
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
 	close(fd[1]);
-	open_program(data->program2_path, data->output_program_parameters, envp);
+	if (data->program2_path != NULL)
+		open_program(data->program2_path, data->output_program_parameters, envp);
 }
 
 void	pipe_operator(t_data *data, char *envp[])
@@ -101,7 +102,10 @@ void	pipe_operator(t_data *data, char *envp[])
 	
 	close(fd[0]);
 	close(fd[1]);
+	printf("Child1 : It exited successfully, exit code %d\n", WEXITSTATUS(status));
 	waitpid(pid1, &status, WNOHANG);
+	
 	waitpid(pid2, &status2, WNOHANG);
+	printf("Child2 : It exited successfully, exit code %d\n", WEXITSTATUS(status2));
 
 }
