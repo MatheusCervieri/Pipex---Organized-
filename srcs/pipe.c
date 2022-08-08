@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 11:05:49 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:55:00 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,8 @@ void	pipe_operator(t_data *data, char *envp[])
 	
 	close(fd[0]);
 	close(fd[1]);
-	printf("Child1 : It exited successfully, exit code %d\n", WEXITSTATUS(status));
-	waitpid(pid1, &status, WNOHANG);
-	
-	waitpid(pid2, &status2, WNOHANG);
-	printf("Child2 : It exited successfully, exit code %d\n", WEXITSTATUS(status2));
-
+	waitpid(pid1, &status, 0);
+	data->exit_code1 = WEXITSTATUS(status);
+	waitpid(pid2, &status2, 0);
+	data->exit_code2 = WEXITSTATUS(status2);
 }
