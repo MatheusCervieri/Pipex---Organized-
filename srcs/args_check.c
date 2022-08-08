@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 10:35:59 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:04:21 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	find_program1(t_data *data, char *program_name)
 			break ;
 		}
 		else
-		{
 			data->program1_path = NULL;
-		}
 		free(path);
 		i++;
 	}
@@ -58,9 +56,7 @@ void	find_program2(t_data *data, char *program_name)
 			break ;
 		}
 		else
-		{
 			data->program2_path = NULL;
-		}
 		free(path);
 		i++;
 	}
@@ -93,16 +89,15 @@ void	find_path_env(t_data *data, char *envp[])
 	find_program2(data, data->output_program_parameters[0]);
 }
 
-int open_or_create(char *file_name, t_data *data)
+int	open_or_create(char *file_name, t_data *data)
 {
-	int fd;
+	int	fd;
 
-	fd = open(file_name, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
+	fd = open(file_name, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
 	if (fd < 0)
 		exit_program("Error when open the file!", data);
 	return (fd);
 }
-
 
 void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 {
@@ -112,14 +107,15 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 		exit(2);
 	}
 	data->output_path = argv[4];
-	data->out_file_fd = open(data->output_path, O_CREAT|O_RDWR, S_IRUSR | S_IWUSR);
+	data->out_file_fd = open(data->output_path, O_CREAT | O_RDWR,
+			S_IRUSR | S_IWUSR);
 	if (data->out_file_fd < 0)
 		perror(data->output_path);
 	data->input_path = argv[1];
 	if (access(argv[1], F_OK) != 0)
 	{
 		data->input_path = NULL;
-		perror(argv[1]); //No such file or directory. 
+		perror(argv[1]);
 	}
 	data->input_program_parameters = get_parameters(argv[2]);
 	data->output_program_parameters = get_parameters(argv[3]);
