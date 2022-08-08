@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 22:15:53 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 13:16:27 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:18:46 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 	int		out_file_fd;
 	int		exit_code1;
 	int		exit_code2;
+	int		dev_fd;
 }	t_data;
 
 void	pipe_operator(t_data *data, char *envp[]);
