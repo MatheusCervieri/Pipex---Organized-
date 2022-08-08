@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/05 10:10:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 10:35:59 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	find_program2(t_data *data, char *program_name)
 	{
 		erromessage = ft_strjoin(program_name, ": command not found\n");
 		ft_putstr_fd(erromessage, 2);
+		free(erromessage);
 	}
 }
 
