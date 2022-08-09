@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:48:39 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 16:03:20 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:39:42 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,12 @@ void	pipe_operator(t_data *data, char *envp[])
 	if (pipe(fd) == -1)
 		exit_program("Pipe function error", data);
 	pid[0] = create_process1(data, fd, in_file_fd, envp);
-	pid[1] = fork();
-	if (pid[1] == 0)
-		pid_two_func(data, data->out_file_fd, fd, envp);
+	if (data->out_file_fd >= 0)
+	{
+		pid[1] = fork();
+		if (pid[1] == 0)
+			pid_two_func(data, data->out_file_fd, fd, envp);
+	}
 	if (in_file_fd != -1)
 		close(in_file_fd);
 	close(fd[0]);

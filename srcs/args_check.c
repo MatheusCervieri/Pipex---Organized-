@@ -6,7 +6,7 @@
 /*   By: mvieira- <mvieira-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 21:52:07 by mvieira-          #+#    #+#             */
-/*   Updated: 2022/08/08 16:29:44 by mvieira-         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:49:04 by mvieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	args_check(int argc, char *argv[], char *envp[], t_data *data)
 	if (argc != 5)
 	{
 		perror("invalid number of arguments");
-		exit(2);
+		exit(1);
 	}
 	data->output_path = argv[4];
 	data->out_file_fd = open(data->output_path, O_CREAT | O_RDWR,
